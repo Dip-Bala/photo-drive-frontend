@@ -1,4 +1,4 @@
-
+import axios from 'axios';
 import { zodResolver } from "@hookform/resolvers/zod";
 import {type SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -22,11 +22,14 @@ const Auth = () => {
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log(data);
+      const res = await axios.post('http://localhost:8080/api/auth/signup',
+        data
+      , {withCredentials: true})
+      console.log(res);
     } catch (error) {
+      console.log(error)
       setError("root", {
-        message: "This email is already taken",
+        message: "error axios",
       });
     }
   };
