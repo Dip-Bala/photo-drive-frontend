@@ -32,26 +32,6 @@ const createFolderApi = async ({
   return data;
 };
 
-const uploadImageApi = async ({
-  name,
-  file,
-  folder,
-}: {
-  name: string;
-  file: File;
-  folder: string | null;
-}) => {
-  const formData = new FormData();
-  formData.append("name", name);
-  formData.append("file", file);
-  if (folder) formData.append("folder", folder);
-
-  const { data } = await api.post("/api/images/upload", formData, {
-    headers: { "Content-Type": "multipart/form-data" },
-  });
-  return data;
-};
-
 // ---- Component ----
 export default function FileExplorer() {
   const [showCreateFolder, setShowCreateFolder] = useState(false);
