@@ -21,15 +21,20 @@ export default function AuthForm({onSuccess }: AuthProps) {
   });
 
   async function onSubmit(values: FormValues) {
-    setServerError("");
-    try {
-      const url = mode === "signup" ? "/api/auth/signup" : "/api/auth/login";
-      await api.post(url, values);
-      onSuccess?.();
-    } catch (e: any) {
-      setServerError(e?.response?.data || "Something went wrong");
+  setServerError("");
+  try {
+    if (mode === "signup") {
+      await api.post("/api/auth/signup", values);
+      await api.post("/api/auth/login", values);
+    } else {
+      await api.post("/api/auth/login", values);
     }
+    onSuccess?.();
+  } catch (e: any) {
+    setServerError(e?.response?.data || "Something went wrong");
   }
+}
+
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-xs md:w-sm p-8 flex flex-col gap-2  rounded">
