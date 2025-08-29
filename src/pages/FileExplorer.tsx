@@ -88,14 +88,6 @@ export default function FileExplorer() {
     },
   });
 
-  const uploadImageMutation = useMutation({
-    mutationFn: uploadImageApi,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["images", currentFolder] });
-      setShowUploadImage(false);
-    },
-  });
-
   // Handlers
   const handleOpenFolder = (id: string, name: string) => {
     setCurrentFolder(id);
@@ -113,15 +105,11 @@ export default function FileExplorer() {
   if (loadingFolders || loadingImages)
     return <div className="p-4">Loading...</div>;
 
-  function handleOpenImage(name: any, url: any): void {
-    throw new Error("Function not implemented.");
-  }
 
   return (
     <div>
       <Navbar onSearch={setSearchQuery} />
       <div className="p-6 w-full h-full">
-        {/* Modals */}
         {showCreateFolder && (
           <CreateFolderModal
             onClose={() => setShowCreateFolder(false)}
@@ -143,7 +131,6 @@ export default function FileExplorer() {
           />
         )}
 
-        {/* Toolbar */}
 
         <div className="flex items-center gap-4 mb-6">
           {currentFolder !== null && (
@@ -169,7 +156,6 @@ export default function FileExplorer() {
           </button>
         </div>
 
-        {/* Breadcrumbs */}
         <div className="mb-4 text-gray-700">
           {breadcrumbs.map((b, idx) => (
             <span key={b.id || "root"}>
@@ -179,7 +165,6 @@ export default function FileExplorer() {
           ))}
         </div>
 
-        {/* Items */}
         <div className="flex flex-wrap gap-8 items-center text-neutral-600">
           {folders.map((folder: any) => (
             <div
@@ -196,7 +181,6 @@ export default function FileExplorer() {
             <div
               key={img._id}
               className="flex flex-col items-center cursor-pointer"
-              onClick={() => handleOpenImage(img.name, img.url)}
             >
               <img
                 src={img.url}
