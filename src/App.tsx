@@ -1,13 +1,11 @@
-import { useState, useEffect } from "react";
-import AuthForm from "./auth/AuthForm";
+import { useState, useEffect} from "react";
 import api from "./lib/api";
-import Dashboard from "./pages/Dashboard";
-
+import { UserContext } from "./Hooks/userContext";
+import AuthPage from "./pages/AuthPage";
+import FileExplorer from "./pages/FileExplorer";
 
 export default function App() {
   const [user, setUser] = useState<boolean | null>(null);
-  const [mode, setMode] = useState<"signup" | "login">("signup");
-
   useEffect(() => {
     async function checkAuth() {
       try {
@@ -22,5 +20,13 @@ export default function App() {
 
   if (user === null) return <p>Loading...</p>;
 
-  return user ? <Dashboard /> : <AuthForm mode={mode} onSuccess={() => setUser(true)} />;
+  return (
+  <UserContext.Provider value={{ user, setUser }}>
+      {user ? (
+        <FileExplorer />
+      ) : (
+        <AuthPage />
+      )}
+  </UserContext.Provider>
+  )
 }

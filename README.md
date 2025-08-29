@@ -13,9 +13,3 @@ Tech Stack
 Back End: NodeJS
 Front End: ReactJS
 Database: MongoDB
-
-Additional Requirements
-1.The code must be pushed to a GitHub repository.
-2.The application must be deployed.
-3.Provide the login credentials for the application when you submit it.
-4.Authentication must be implemented in NodeJS and the use of Firebase is not allowed.
