@@ -1,5 +1,4 @@
 
-```markdown
 # 📸 Photo Drive – Frontend
 
 A modern **React + Vite + TypeScript** frontend for the Photo Drive app. Users can **sign up, log in, create nested folders, upload images to Cloudinary, and browse/search their own files**.
@@ -64,8 +63,7 @@ src/
 ---
 
 ## 🔗 API Endpoints Used (from backend)
-
-> You don’t need to change these here; the backend README covers full details.  
+  
 > The frontend calls:
 
 - `POST /api/auth/signup`
@@ -208,18 +206,6 @@ res.cookie('access_token', token, {
 
 ---
 
-## 🧩 Favicon & Static Assets
-
-* Put favicon at: **`public/favicon.ico`**
-* In `index.html`:
-
-```html
-<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-```
-
-> If it “doesn’t work”, hard refresh (Cmd/Ctrl+Shift+R) or clear cache. Ensure the file is truly at `/public/favicon.ico`.
-
----
 ```md
 ## 📸 Screenshots
 
@@ -261,4 +247,3 @@ PRs welcome! Please open an issue first for large changes.
 
 MIT © Dipanwita Bala
 
-```
