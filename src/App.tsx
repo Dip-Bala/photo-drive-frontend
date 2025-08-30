@@ -3,6 +3,7 @@ import api from "./lib/api";
 import { UserContext } from "./Hooks/userContext";
 import AuthPage from "./pages/AuthPage";
 import FileExplorer from "./pages/FileExplorer";
+import Loader from "./components/Loader";
 
 export default function App() {
   const [user, setUser] = useState<boolean | null>(null);
@@ -18,7 +19,7 @@ export default function App() {
     checkAuth();
   }, []);
 
-  if (user === null) return <p>Loading...</p>;
+  if (user === null) return <Loader />;
 
   return (
   <UserContext.Provider value={{ user, setUser }}>

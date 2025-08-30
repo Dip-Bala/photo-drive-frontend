@@ -7,6 +7,7 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { LuFolderPlus } from "react-icons/lu";
 import { MdFolder, MdOutlineFileUpload } from "react-icons/md";
 import Navbar from "../components/Navbar";
+import Loader from "../components/Loader";
 const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME!;
 const PRESET = import.meta.env.VITE_CLOUDINARY_PRESET!;
 
@@ -83,7 +84,7 @@ export default function FileExplorer() {
   };
 
   if (loadingFolders || loadingImages)
-    return <div className="p-4">Loading...</div>;
+    return <Loader />;
 
 
   return (
@@ -112,7 +113,8 @@ export default function FileExplorer() {
         )}
 
 
-        <div className="flex items-center gap-4 mb-6">
+        <div className="flex items-center justify-between gap-4 mb-6">
+          <div className="flex items-center gap-2 ">
           {currentFolder !== null && (
             <button
               onClick={handleGoBack}
@@ -121,28 +123,30 @@ export default function FileExplorer() {
               <FaArrowLeftLong />
             </button>
           )}
-          <button
-            onClick={() => setShowCreateFolder(true)}
-            className="flex items-center gap-2 px-4 py-2 text-xs sm:text-base bg-purple-100 rounded-4xl hover:shadow  text-purple-700 hover:bg-white cursor-pointer"
-          >
-            <LuFolderPlus className="sm:text-xl text-sm" /> New Folder
-          </button>
-
-          <button
-            onClick={() => setShowUploadImage(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-green-100 text-xs sm:text-base text-green-700 rounded-4xl hover:shadow hover:bg-white cursor-pointer"
-          >
-            <MdOutlineFileUpload className="sm:text-xl text-sm" /> Upload Image
-          </button>
-        </div>
-
-        <div className="mb-4 text-gray-700">
+           <div className=" text-neutral-700">
           {breadcrumbs.map((b, idx) => (
             <span key={b.id || "root"}>
               {idx > 0 && " / "}
               {b.name}
             </span>
           ))}
+        </div>
+        </div>
+          <div className="flex gap-2">
+          <button
+            onClick={() => setShowCreateFolder(true)}
+            className="flex items-center gap-2 px-4 py-2 text-xs sm:text-base  rounded-4xl shadow text-purple-700 hover:bg-purple-100 cursor-pointer"
+          >
+            <LuFolderPlus className="sm:text-xl text-sm" /> New Folder
+          </button>
+
+          <button
+            onClick={() => setShowUploadImage(true)}
+            className="flex items-center gap-2 px-4 py-2 text-xs sm:text-base text-green-700 rounded-4xl shadow hover:bg-green-100 cursor-pointer"
+          >
+            <MdOutlineFileUpload className="sm:text-xl text-sm" /> Upload Image
+          </button>
+          </div>
         </div>
 
         <div className="flex flex-wrap gap-8 items-center text-neutral-600">

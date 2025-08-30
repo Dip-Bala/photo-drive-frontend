@@ -31,7 +31,7 @@ export default function AuthForm({onSuccess }: AuthProps) {
     }
     onSuccess?.();
   } catch (e: any) {
-    setServerError(e?.response?.data || "Something went wrong");
+    setServerError(e?.response?.data || "Could not connect to server");
   }
 }
 

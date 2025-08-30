@@ -29,13 +29,13 @@ export default function Navbar({ onSearch }: Props) {
             onSearch(e.target.value);
           }}
           placeholder="Search your photos..."
-          className="w-full  max-w-md text-xs sm:text-base px-4 py-2 rounded-4xl border border-neutral-400 hover:border-neutral-600 text-neutral-700 bg-gray-50 focus:outline-0 focus:bg-white" 
+          className="w-full  max-w-md text-xs sm:text-base px-4 py-2 rounded-4xl border border-neutral-400 hover:border-2 focus:border-2 hover:border-neutral-600 text-neutral-700 bg-gray-50 focus:outline-0 focus:bg-white" 
         />
       </div>
 
       <button
         onClick={handleLogout}
-        className="text-pink-500 cursor-pointer font-medium hover:text-blue-500 hover:bg-gray-50"
+        className="text-pink-500 cursor-pointer px-4 py-2 rounded-4xl shadow  hover:bg-pink-100"
       >
         Log out
       </button>
